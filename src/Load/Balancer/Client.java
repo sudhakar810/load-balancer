@@ -23,14 +23,14 @@ public class Client {
         ipPoolWeighted.put("192.168.0.1",  1);
         ipPoolWeighted.put("192.168.0.2",  1);
         ipPoolWeighted.put("192.168.0.3",  3);
-//
-//        client.printNextTurn("Random");
-//        LoadBalancer random = new RandomLoadBalancer(ipPool);
-//        client.simulateConcurrentClientRequest(random, NUM_OF_REQUESTS);
-//
-//        client.printNextTurn("Round-Robin");
-//        LoadBalancer roundRobbin = new RoundRobinLoadBalancer(ipPool);
-//        client.simulateConcurrentClientRequest(roundRobbin, NUM_OF_REQUESTS);
+
+        client.printNextTurn("Random");
+        LoadBalancer random = new RandomLoadBalancer(ipPool);
+        client.simulateConcurrentClientRequest(random, NUM_OF_REQUESTS);
+
+        client.printNextTurn("Round-Robin");
+        LoadBalancer roundRobbin = new RoundRobinLoadBalancer(ipPool);
+        client.simulateConcurrentClientRequest(roundRobbin, NUM_OF_REQUESTS);
 
         client.printNextTurn("Weighted-Round-Robin");
         LoadBalancer weightedRoundRobin = new WeightedRoundRobinLoadBalancer(ipPoolWeighted);
@@ -48,7 +48,7 @@ public class Client {
                 .parallel()
                 .forEach(i ->
                         System.out.println(
-                                "IP: " + loadBalancer.getServerIpByWeight()
+                                "IP: " + loadBalancer.getServer()
                                 + " --- Request from Client: " + i
                                 + " --- [Thread: " + Thread.currentThread().getName() + "]")
                 );
